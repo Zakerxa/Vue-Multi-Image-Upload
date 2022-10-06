@@ -1,6 +1,31 @@
 {
     "name": "@zakerxa/vue-multiple-image-upload",
-    "version": "0.0.1",
+    "version": "1.0.1",
+    "license": "MIT",
+    "description": "This is a vue-component multiple image upload with preview.I hope this can help you a lot.",
+    "keywords": [
+        "Vue Multiple Image Upload",
+        "Vue Multi Image Upload",
+        "Vue Multiple Image",
+        "Vue Laravel Multiple Image Upload",
+        "Multiple Image Upload",
+        "MultipleImageUpload",
+        "Laravel Vue Multiple Image"
+    ],
+    "author": {
+        "name": "Zin Min Htet",
+        "email": "zakerxa@gmail.com",
+        "url": "https://zakerxa@gmail.com"
+    },
+    "homepage": "https://github.com/Zakerxa/Vue-Multi-Image-Upload#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Zakerxa/Vue-Multi-Image-Upload.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Zakerxa/Vue-Multi-Image-Upload/issues",
+        "email": "zakerxa@gmail.com"
+    },
     "private": true,
     "scripts": {
         "s": "vue-cli-service serve",
