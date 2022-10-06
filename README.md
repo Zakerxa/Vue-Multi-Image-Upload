@@ -6,9 +6,15 @@ Hello Everyone,My name is **Zin Min Htet** and here is my [**Facebook account**]
 
 Now, I will show you how to Upload Multiple Image using vue-component.
 
-There is also an image Preview & Remove method.
+There is also an image Preview & Remove features.
 
 I hope this can help you a lot with your website.
+
+
+# Live Demo
+
+**Here is [Live Demo](https://vue-multi-image-upload.vercel.app).**
+
 
 ## Installation
 
@@ -89,7 +95,7 @@ export default {
 
 ```Vue
 <template>
-   <vue-multi-image-upload @data-image="images" :max="4" :data-reset="component"/>
+   <vue-multi-image-upload @data-image="images" :max="4" :data-reset="component" :options="options"/>
    <button @click="component.clear = true">Clear</button>
 </template>
 ```
@@ -102,7 +108,8 @@ import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
 export default {
     data(){
         return {
-          component : {}
+          component : {},
+          options : {}
         }
     },
     components:{
@@ -114,6 +121,12 @@ export default {
         e.map(res=> images.push(res));
         console.log(images);
       }
+    },
+    mounted(){
+      // Options
+      this.options.max = "Max";
+      this.options.ready = "Ready";
+      this.options.select = "Choosed";
     }
 }
 </script>
