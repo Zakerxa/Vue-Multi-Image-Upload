@@ -6,13 +6,14 @@
       <img alt="Vue logo" style="width:170px" src="../assets/logo.png" />
       <h5>Vue Multiple Image Upload With Preview</h5>
 
-      <!-- Msg Box -->
-      <div v-if="postAlert" :class="[alert.state ? 'alert-success' : 'alert-warning']" class="alert col-sm-10 col-md-8 col-lg-5" role="alert">
-        {{alert.msg}}
+      <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3">
+         <!-- Msg Box -->
+         <div v-if="postAlert" :class="[alert.state ? 'alert-success' : 'alert-warning']" class="alert" role="alert">
+          {{alert.msg}}
+         </div>
+          <!--  Vue Component -->
+         <VueMultiImageUpload :max="max" @data-image="images" :data-reset="vdata" :options="options" />
       </div>
-
-      <!--  Vue Component -->
-      <VueMultiImageUpload class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3" :max="max" @data-image="images" :data-reset="vdata" :options="options" />
 
       <!-- Clear Button -->
       <div class="col-12 mb-4 pt-4">
