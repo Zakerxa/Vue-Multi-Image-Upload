@@ -12,7 +12,7 @@
           {{alert.msg}}
          </div>
           <!--  Vue Component -->
-         <VueMultiImageUpload :max="max" @data-image="images" :data-reset="vdata" :options="options" />
+         <VueMultiImageUpload :max="max" @data-image="images" :data-reset="vdata" :options="options" :image-size="5000000"/>
       </div>
 
       <!-- Clear Button -->

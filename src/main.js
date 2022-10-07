@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { VueMultiImageUpload } from "vue-multi-image-upload";
+import { VueMultiImageUpload } from "@zakerxa/vue-multiple-image-upload";
 import routes from "./routes";
 
 

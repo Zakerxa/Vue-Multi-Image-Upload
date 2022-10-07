@@ -19,7 +19,7 @@ I hope this can help you a lot with your website.
 ## Installation
 
 ```NPM
-npm i vue-multi-image-upload
+npm i @zakerxa/vue-multiple-image-upload
 ```
 
 ## Setup
@@ -28,7 +28,7 @@ npm i vue-multi-image-upload
 
 ```Vue
 <script>
- import { VueMultiImageUpload } from 'vue-multi-image-upload';
+ import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
 
   export default {
     components:{
@@ -44,9 +44,9 @@ npm i vue-multi-image-upload
 
 ```Javascript
 
- import { VueMultiImageUpload } from 'vue-multi-image-upload';
+ import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
  const app = createApp(App);
- app.component("vue-multi-image-upload", VueMultiImageUpload);
+ app.component("vue-multi-image-upload, VueMultiImageUpload");
 
 ```
 
@@ -95,21 +95,21 @@ export default {
 
 ```Vue
 <template>
-   <vue-multi-image-upload @data-image="images" :max="4" :data-reset="component" :options="options"/>
+   <vue-multi-image-upload @data-image="images" :max="4" :data-reset="component" :options="options" :image-size="imageSize" :image-format="formatType"/>
    <button @click="component.clear = true">Clear</button>
 </template>
-```
 
-```Vue
 <script>
 
-import { VueMultiImageUpload } from 'vue-multi-image-upload';
+import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
 
 export default {
     data(){
         return {
           component : {},
-          options : {}
+          options : {},
+          imageSize : 2000000, // 2MB
+          formatType : ['image/jpeg', 'image/png', 'image/jpg']
         }
     },
     components:{
