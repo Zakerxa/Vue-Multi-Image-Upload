@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid">
      <div class="row justify-content-center">
-
+    
       <!-- Hero Image  -->
-      <img alt="Vue logo" style="width:200px" src="../assets/logo.png" />
+      <img alt="Vue logo" style="width:170px" src="../assets/logo.png" />
       <h5>Vue Multiple Image Upload With Preview</h5>
 
       <!-- Msg Box -->
