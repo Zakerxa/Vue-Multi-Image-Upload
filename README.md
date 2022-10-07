@@ -19,7 +19,7 @@ I hope this can help you a lot with your website.
 ## Installation
 
 ```NPM
-npm i @zakerxa/vue-multiple-image-upload
+npm i vue-multi-image-upload
 ```
 
 ## Setup
@@ -28,7 +28,7 @@ npm i @zakerxa/vue-multiple-image-upload
 
 ```Vue
 <script>
- import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
+ import { VueMultiImageUpload } from 'vue-multi-image-upload';
 
   export default {
     components:{
@@ -42,12 +42,12 @@ npm i @zakerxa/vue-multiple-image-upload
 
 **Global registration in your main.js file**
 
-```Vue
-<script>
- import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
+```Javascript
+
+ import { VueMultiImageUpload } from 'vue-multi-image-upload';
  const app = createApp(App);
- app.component("vue-upload-zakerxa", VueMultiImageUpload);
-</script>
+ app.component("vue-multi-image-upload", VueMultiImageUpload);
+
 ```
 
 **2 - In your Vue Template**
@@ -103,7 +103,7 @@ export default {
 ```Vue
 <script>
 
-import { VueMultiImageUpload } from '@zakerxa/vue-multiple-image-upload';
+import { VueMultiImageUpload } from 'vue-multi-image-upload';
 
 export default {
     data(){
