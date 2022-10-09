@@ -12,7 +12,7 @@
           {{alert.msg}}
          </div>
           <!--  Vue Component -->
-         <VueMultiImageUpload :max="max" @data-image="images" :data-reset="vdata" :options="options" :image-size="5000000"/>
+         <VueMultiImageUpload :max="max" @data-image="images" :data-reset="vdata" :options="options" :image-size="5000000" :image-format="imageFormat"/>
       </div>
 
       <!-- Clear Button -->
@@ -20,11 +20,24 @@
         <button @click="upload()" class="btn btn-success fw-bold">Upload</button>
       </div>
 
-      <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3">
-        <select @change="onChange($event)" class="form-select" aria-label="Default select example">
-          <option selected value="6">Max Photo Upload</option>
-          <option v-for="no in 12" :key="no.id" :value="no">Max Photo Upload {{no}}</option>
-        </select>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3 mb-5">
+         <div class="row">
+           <div class="col-6 mt-3">
+              <select @change="onChange($event)" class="form-select" aria-label="Default select example">
+                <option selected value="6">Default 6</option>
+                <option v-for="no in 12" :key="no.id" :value="no">Max Photo Upload {{no}}</option>
+              </select>
+            </div>
+            <div class="col-6 mt-3">
+              <select @change="onChangeFormat($event)" class="form-select" aria-label="Default select example">
+                <option selected :value="['image/png','image/jpeg','image/webp', 'image/gif']">Allow All Images</option>
+                <option :value="['image/gif']">Allow Gif Only</option>
+                <option :value="['image/png']">Allow PNG Only</option>
+                <option :value="['image/jpeg']">Allow JPEG Only</option>
+                <option :value="['image/webp']">Allow Webp Only</option>
+              </select>
+            </div>
+         </div>
       </div>
       
      </div>
@@ -41,10 +54,11 @@ export default {
         msg : "Successfully add new images.",
         state : true
       },
+      imageFormat : ['image/png','image/jpeg','image/webp','image/gif'],
       vdata : { clear : false },
       inputImages : [],
       options : {
-        max : "Max",
+        max : "Maximun",
         ready : "Ready",
         select : "Choosed"
       },
@@ -59,9 +73,12 @@ export default {
     onChange(e){
       this.max = e.target.value;
     },
+    onChangeFormat(e){
+       this.imageFormat = e.target.value;
+    },
     inputFormData(){
       // In this project I will not use this function
-      // This is only for real project
+      // This is only for real production project
       // You can post by calling this.inputFormData() Function
       
       let formData = new FormData();
