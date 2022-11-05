@@ -1,19 +1,21 @@
-# Vue Component Multiple Image Upload
+# Vue Multiple Image Upload
 
-# Welcome
+# Welcome Back
 
 Hello Everyone,My name is **Zin Min Htet** and here is my [**Facebook account**](https://www.facebook.com/mm.zakerxa).
 
 Now, I will show you how to Upload Multiple Image using Vue-Component.
 
-There is an image Preview, Remove & Add More features.
+There is an image Preview, Resize, Remove, Add More, Drag & Drop features are included.
 
-You can also limit the maximun amount of upload, the Image size & format.
+You can also limit the maximun number of file upload, the Image size , the Image type.
+
+I add new feature alert Box, Resize Image, Preview also can be resize in version 1.0.7;
 
 
 # Here is Live Demo
 
-<img src="./src/assets/preview.jpg" alt="preview" style="width:200px;"/>
+<img src="https://raw.githubusercontent.com/Zakerxa/Vue-Multi-Image-Upload/master/src/assets/preview.jpg" alt="preview" width="200" style="max-width:200px;"/>
 
 **Watch Now [Live Demo](https://vue-multi-image-upload.vercel.app).**
 
@@ -80,6 +82,77 @@ export default {
 </script>
 ```
 
+## Props & Type
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Props</th>
+      <th scope="col">Data Type</th>
+      <th scope="col">Default</th>
+      <th scope="col">Optional</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">max</td>
+      <td>Number</td>
+      <td>6</td>
+      <td>YES</td>
+      <td>Upload File Limit</td>
+    </tr>
+    <tr>
+      <td scope="row">Preview</td>
+      <td>Object</td>
+      <td>{ h:100, w:100 }</td>
+      <td>YES</td>
+      <td>Preview Size h => height</td>
+    </tr>
+    <tr>
+      <td scope="row">Resize</td>
+      <td>Object</td>
+      <td>No Default</td>
+      <td>YES</td>
+      <td>{ h:500, w:500 , keepRatio: true}</td>
+    </tr>
+    <tr>
+      <td scope="row">imageSize</td>
+      <td>Number</td>
+      <td>4e6</td>
+      <td>YES</td>
+      <td>Image File Size</td>
+    </tr>
+    <tr>
+      <td scope="row">alertTimeout</td>
+      <td>Number</td>
+      <td>3e3 (3s)</td>
+      <td>YES</td>
+      <td>Alert TimeOut</td>
+    </tr>
+    <tr>
+      <td scope="row">imageFormat</td>
+      <td>Array</td>
+      <td>[image/png, image/jpg, image/gif]</td>
+      <td>YES</td>
+      <td>Image's Format Validate</td>
+    </tr>
+     <tr>
+      <td scope="row">dataReset</td>
+      <td>Object</td>
+      <td>false</td>
+      <td>No</td>
+      <td>Reset the child component data.</td>
+    </tr>
+     <tr>
+      <td scope="row">Options</td>
+      <td>Object</td>
+      <td>"Maximun","Ready","Selected"</td>
+      <td>YES</td>
+      <td>Input Box Message.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Explanation of usage
 
@@ -91,23 +164,36 @@ export default {
   }
 ```
 
-**2.We can limit the number of image to upload maximun**
+**2.We can Resize the images by adding resize props**
+```
+:resize={ h:500, w:500 ,keepRatio:true}
+h => max-height of the image
+w => max-width of the image
+
+keepRatio true can resize your image without losing distortion
+keepRatio false can resize your image exactly width & height
+
+Default is False
+```
+
+
+**3.We can limit the number of image to upload maximun**
 ```
 :max="limitNumber"
 ```
 
-**3.We can also limit the images size & format.**
+**4.We can also limit the images size & format.**
 ```
 :image-size="imageSize" :image-format="formatType"
 
-this.imageSize = 2000000; // 2MB
+this.imageSize = 2e6; // 2MB
 ImageSize only allow 2MB else We will show alert msg to user.
 
-this.formatType = ['image/jpeg', 'image/png', 'image/jpg'];
-FormatType will allow the things you have given.
+this.formatType = ['image/jpeg', 'image/png', 'image/gif'];
+FormatType should be inside an array
 ```
 
-**4.And, There is one options.Options can change the message inputBox.**
+**5.And, There is one options.Options can change the message inputBox.**
 ```
 :options="options"
 this.options.max = "Max";
@@ -115,65 +201,30 @@ this.options.ready = "Ready";
 this.options.select = "Choosed";
 ```
 
-**5.If you want to reset child component data,You can use :data-reset props to passing Object**
+**6.If you want to reset child component data,You can use :data-reset props to passing Object**
 ```
 :data-reset="components"
 this.component.clear = true;
 ```
 
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Props</th>
-      <th scope="col">Data Type</th>
-      <th scope="col">Default</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">max</td>
-      <td>Number</td>
-      <td>8</td>
-      <td>Upload File Limit</td>
-    </tr>
-    <tr>
-      <td scope="row">imageSize</td>
-      <td>Number</td>
-      <td>4000000</td>
-      <td>Image File Size</td>
-    </tr>
-    <tr>
-      <td scope="row">imageFormat</td>
-      <td>Array</td>
-      <td>[image/png, image/jpg, image/jpeg]</td>
-      <td>Image's Format Validate</td>
-    </tr>
-     <tr>
-      <td scope="row">dataReset</td>
-      <td>Object</td>
-      <td>false</td>
-      <td>Reset the child component data.</td>
-    </tr>
-     <tr>
-      <td scope="row">Options</td>
-      <td>Object</td>
-      <td>"Maximun","Ready","Selected"</td>
-      <td>Input Box Message.</td>
-    </tr>
-  </tbody>
-</table>
-
-
-## Usage
+## Final State
 
 **That's all what you need**
 
 ```Vue
 <template>
-   <vue-multi-image-upload @data-image="images" :max="4" :data-reset="component" :options="options" :image-size="imageSize" :image-format="formatType"/>
-   <button @click="component.clear = true">Clear</button>
+   <vue-multi-image-upload 
+     @data-image="images" 
+     :max="4" 
+     :image-size="4e6"  
+     :alert-timeout="3e3" 
+     :image-format="formatType"
+     :preview="{ h:100,w:100 }"
+     :resize="{ h:500,w:500, keepRatio:true}" 
+     :data-reset="component" 
+     :options="options"  
+    />
+   <button @click="clear()">Clear</button>
 </template>
 
 <script>
@@ -184,10 +235,8 @@ export default {
     data(){
         return {
           component : {},
-          options : {},
-          inputImages : '',
-          imageSize : 2000000, // 2MB
-          formatType : ['image/jpeg', 'image/png']
+          inputImages : [],
+          formatType : ['image/jpeg', 'image/png', 'image/gif']
         }
     },
     components:{
@@ -196,28 +245,16 @@ export default {
     methods:{
       images(e){
         this.inputImages = e;
-        e.map(res=> console.log(res);); 
       },
       inputFormData(){
-        // In this project I will not use this function
-        // This is only for real production project
-        // You can post by calling this.inputFormData() Function
-        
-        let formData = new FormData();
-        // Append to the FormData.
-        formData.append('name', "Zakerxa");
-        formData.append('price', 1000);
-        formData.append('details', "This is product Details");
         // The way to append images to FormData.
+        let formData = new FormData();
         this.inputImages.map(img => formData.append('images[]',img));
         return formData;
+      },
+      clear(){
+        this.component.clear = true;
       }
-    },
-    mounted(){
-      // Options
-      this.options.max = "Max";
-      this.options.ready = "Ready";
-      this.options.select = "Choosed";
     }
 }
 </script>
