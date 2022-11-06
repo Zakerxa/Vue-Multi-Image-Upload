@@ -15,7 +15,7 @@
          <VueMultiImageUpload 
          :max="max" 
          @data-image="images" 
-         :preview="{h:100,w:100}"
+         :preview="preview"
          :data-reset="vdata" 
          :options="options" :image-size="3e6" 
          :image-format="imageFormat"/>
@@ -28,19 +28,28 @@
 
       <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3 mb-5">
          <div class="row">
-           <div class="col-12 mt-3">
+           <div class="col-6 mt-3">
               <select @change="onChange($event)" class="form-select" aria-label="Default select example">
                 <option selected value="6">Default 6</option>
                 <option v-for="no in 12" :key="no.id" :value="no">Max Photo Upload {{no}}</option>
               </select>
             </div>
+            <div class="col-6 mt-3">
+              <select @change="onChangePreview($event)" class="form-select" aria-label="Default select example">
+                <option selected :value="{h:100,w:100}">Resize Preview</option>
+                <option value="1">50 x 50</option>
+                <option value="2">100 x 100</option>
+                <option value="3">200 x 200</option>
+                <option value="4">300 x 300</option>
+              </select>
+            </div>
             <!-- <div class="col-6 mt-3">
               <select @change="onChangeFormat($event)" class="form-select" aria-label="Default select example">
                 <option selected :value="['image/png','image/jpeg','image/webp', 'image/gif']">Allow All Images</option>
-                <option :value="['image/gif']">Allow Gif Only</option>
-                <option :value="['image/png']">Allow PNG Only</option>
-                <option :value="['image/jpeg']">Allow JPEG Only</option>
-                <option :value="['image/webp']">Allow Webp Only</option>
+                <option value="image/gif">Allow Gif Only</option>
+                <option value="image/png">Allow PNG Only</option>
+                <option value="image/jpeg">Allow JPEG Only</option>
+                <option value="image/webp">Allow Webp Only</option>
               </select>
             </div> -->
          </div>
@@ -60,7 +69,8 @@ export default {
         msg : "Successfully add new images.",
         state : true
       },
-      imageFormat : ['image/png','image/jpeg','image/webp','image/gif'],
+      imageFormat : ['image/png','image/jpeg','image/webp','image/gif','image/svg+xml'],
+      preview : {h:100,w:100},
       vdata : { clear : false },
       inputImages : [],
       options : {
@@ -79,8 +89,21 @@ export default {
     onChange(e){
       this.max = e.target.value;
     },
+    onChangePreview(e){
+      console.log(e.target.value)
+      switch (e.target.value) {
+        case "1": this.preview = {h:50,w:50};break;
+        case "2": this.preview = {h:100,w:100};break;
+        case "3": this.preview = {h:200,w:200};break;
+        case "4": this.preview = {h:300,w:300};break;
+        default:console.log(this.preview);
+        break;  
+      }
+    },
     onChangeFormat(e){
-      this.imageFormat = e.target.value;
+      this.imageFormat = [];
+      this.imageFormat.push(e.target.value)
+      console.log(this.imageFormat)
     },
     inputFormData(){
       let formData = new FormData();
