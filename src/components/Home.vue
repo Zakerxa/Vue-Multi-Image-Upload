@@ -1,10 +1,51 @@
 <template>
     <div class="container-fluid">
      <div class="row justify-content-center">
-    
-      <!-- Hero Image  -->
-      <img alt="Vue logo" style="width:170px" src="../assets/logo.png" />
-      <h5>Vue Multiple Image Upload With Preview</h5>
+      <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3 mb-5">
+        <h5>Features</h5>
+        <p class="">Preview, Resize, Remove, Add More, Drag & Drop, Limit File Size, File Upload Number and Image Type Limit</p>
+
+         <div class="row">
+           <div class="col-6 mt-3">
+              <select @change="onChange($event)" class="form-select" aria-label="Default select example">
+                <option selected value="6">Maximun 6</option>
+                <option v-for="no in 10" :key="no.id" :value="no">Max Photo Upload {{no}}</option>
+              </select>
+            </div>
+            <div class="col-6 mt-3">
+              <select @change="onChangePreview($event)" class="form-select" aria-label="Default select example">
+                <option selected value="2">Preview</option>
+                <option value="1">50 x 50</option>
+                <option value="2">100 x 100</option>
+                <option value="3">100 x 200</option>
+                <option value="4">200 x 350</option>
+                <option value="5">200 x 400</option>
+              </select>
+            </div>
+            <div class="col-6 mt-3">
+              <select @change="onChangeFormat($event)" class="form-select" aria-label="Default select example">
+                <option selected value="all">All Images</option>
+                <option value="image/gif">Allow Gif Only</option>
+                <option value="image/png">Allow PNG Only</option>
+                <option value="image/jpeg">Allow JPEG Only</option>
+                <option value="image/svg+xml">Allow SVG Only</option>
+                <option value="image/webp">Allow Webp Only</option>
+              </select>
+            </div>
+            <div class="col-6 mt-3">
+              <select @change="onChangeSize($event)" class="form-select" aria-label="Default select example">
+                <option selected :value="3e6">File Size</option>
+                <option value="1e6">1MB</option>
+                <option value="2e6">2MB</option>
+                <option value="3e6">3MB</option>
+                <option value="5e6">5MB</option>
+                <option value="8e6">8MB</option>
+              </select>
+            </div>
+         </div>
+      </div>
+
+      <h5>Vue Multiple Image Upload</h5>
 
       <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3">
          <!-- Msg Box -->
@@ -12,13 +53,14 @@
           {{alert.msg}}
          </div>
           <!--  Vue Component -->
-         <VueMultiImageUpload 
+         <VueMultiImageUpload class="text-start"
          :max="max" 
          @data-image="images" 
          :preview="preview"
          :data-reset="vdata" 
-         :options="options" :image-size="3e6" 
-         :image-format="imageFormat"/>
+         :options="options" 
+         :image-size="size" 
+         :accept="imageFormat"/>
       </div>
 
       <!-- Clear Button -->
@@ -26,34 +68,6 @@
         <button @click="upload()" class="btn btn-success fw-bold">Upload</button>
       </div>
 
-      <div class="col-12 col-sm-10 col-md-8 col-lg-5 mt-3 mb-5">
-         <div class="row">
-           <div class="col-6 mt-3">
-              <select @change="onChange($event)" class="form-select" aria-label="Default select example">
-                <option selected value="6">Default 6</option>
-                <option v-for="no in 12" :key="no.id" :value="no">Max Photo Upload {{no}}</option>
-              </select>
-            </div>
-            <div class="col-6 mt-3">
-              <select @change="onChangePreview($event)" class="form-select" aria-label="Default select example">
-                <option selected :value="{h:100,w:100}">Resize Preview</option>
-                <option value="1">50 x 50</option>
-                <option value="2">100 x 100</option>
-                <option value="3">200 x 200</option>
-                <option value="4">300 x 300</option>
-              </select>
-            </div>
-            <!-- <div class="col-6 mt-3">
-              <select @change="onChangeFormat($event)" class="form-select" aria-label="Default select example">
-                <option selected :value="['image/png','image/jpeg','image/webp', 'image/gif']">Allow All Images</option>
-                <option value="image/gif">Allow Gif Only</option>
-                <option value="image/png">Allow PNG Only</option>
-                <option value="image/jpeg">Allow JPEG Only</option>
-                <option value="image/webp">Allow Webp Only</option>
-              </select>
-            </div> -->
-         </div>
-      </div>
       
      </div>
     <a class="position-fixed text-decoration-none text-dark" href="https://facebook.com/mm.zakerxa" style="right:10px;bottom:10px;">Facebook@ZinMinHtet</a>
@@ -69,14 +83,16 @@ export default {
         msg : "Successfully add new images.",
         state : true
       },
+      alltype : ['image/png','image/jpeg','image/webp','image/gif','image/svg+xml'],
       imageFormat : ['image/png','image/jpeg','image/webp','image/gif','image/svg+xml'],
       preview : {h:100,w:100},
       vdata : { clear : false },
       inputImages : [],
+      size  : 3e6,
       options : {
         max : "Maximun",
         ready : "Ready",
-        select : "Choosed"
+        select : "Selected"
       },
       max : 6,
       postAlert : false
@@ -89,21 +105,22 @@ export default {
     onChange(e){
       this.max = e.target.value;
     },
+    onChangeSize(e){
+       this.size = e.target.value;
+    },
     onChangePreview(e){
-      console.log(e.target.value)
       switch (e.target.value) {
         case "1": this.preview = {h:50,w:50};break;
         case "2": this.preview = {h:100,w:100};break;
-        case "3": this.preview = {h:200,w:200};break;
-        case "4": this.preview = {h:300,w:300};break;
-        default:console.log(this.preview);
-        break;  
+        case "3": this.preview = {h:100,w:200};break;
+        case "4": this.preview = {h:200,w:350};break;
+        case "5": this.preview = {h:200,w:400};break;
+        default: break;  
       }
     },
     onChangeFormat(e){
-      this.imageFormat = [];
-      this.imageFormat.push(e.target.value)
-      console.log(this.imageFormat)
+      this.imageFormat = [e.target.value];
+      if(e.target.value == 'all') this.alltype.map(res=>this.imageFormat.push(res))
     },
     inputFormData(){
       let formData = new FormData();

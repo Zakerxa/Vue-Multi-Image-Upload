@@ -10,7 +10,7 @@ There is an image Preview, Resize, Remove, Add More, Drag & Drop features are in
 
 You can also limit the maximun number of file upload, the Image size , the Image type.
 
-I add new feature alert Box, Resize Image, Preview also can be resize in version 1.0.7;
+I add new feature alert Box, Resize Image, Preview also can be resize in version 1.0.8;
 
 
 # Here is Live Demo
@@ -131,7 +131,7 @@ export default {
       <td>Alert TimeOut</td>
     </tr>
     <tr>
-      <td scope="row">imageFormat</td>
+      <td scope="row">accept</td>
       <td>Array</td>
       <td>[image/png, image/jpg, image/gif]</td>
       <td>YES</td>
@@ -182,15 +182,15 @@ Default is False
 :max="limitNumber"
 ```
 
-**4.We can also limit the images size & format.**
+**4.We can also limit the images size & type.**
 ```
-:image-size="imageSize" :image-format="formatType"
+:image-size="imageSize" :accept="imageType"
 
 this.imageSize = 2e6; // 2MB
 ImageSize only allow 2MB else We will show alert msg to user.
 
-this.formatType = ['image/jpeg', 'image/png', 'image/gif'];
-FormatType should be inside an array
+this.imageType = ['image/jpeg', 'image/png', 'image/gif'];
+imageType should be inside an array
 ```
 
 **5.And, There is one options.Options can change the message inputBox.**
@@ -218,7 +218,7 @@ this.component.clear = true;
      :max="4" 
      :image-size="4e6"  
      :alert-timeout="3e3" 
-     :image-format="formatType"
+     :accept="imageType"
      :preview="{ h:100,w:100 }"
      :resize="{ h:500,w:500, keepRatio:true}" 
      :data-reset="component" 
@@ -236,7 +236,7 @@ export default {
         return {
           component : {},
           inputImages : [],
-          formatType : ['image/jpeg', 'image/png', 'image/gif']
+          imageType : ['image/jpeg', 'image/png', 'image/gif']
         }
     },
     components:{
