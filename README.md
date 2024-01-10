@@ -1,4 +1,4 @@
-# Vue Multiple Image Upload
+# Vue Multiple Image Upload (v1.0.10)
 
 # Welcome Back
 
