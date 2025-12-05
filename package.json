@@ -1,90 +1,77 @@
 {
-    "name": "@zakerxa/github-multiple-image-upload",
-    "version": "1.0.10",
-    "license": "MIT",
-    "description": "This is a vue-component multiple image upload with preview.I hope this can help you a lot.",
-    "keywords": [
-        "Vue Multiple Image Upload",
-        "Vue Multi Image Upload",
-        "Vue Multiple Image",
-        "Vue Laravel Multiple Image Upload",
-        "Multiple Image Upload",
-        "MultipleImageUpload",
-        "Laravel Vue Multiple Image"
-    ],
-    "author": "Zin Min Htet",
-    "homepage": "https://github.com/Zakerxa/Vue-Multi-Image-Upload#readme",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Zakerxa/Vue-Multi-Image-Upload.git"
-    },
-    "bugs": {
-        "url": "https://github.com/Zakerxa/Vue-Multi-Image-Upload/issues",
-        "email": "zakerxa@gmail.com"
-    },
-    "private": true,
-    "scripts": {
-        "s": "vue-cli-service serve",
-        "build": "vue-cli-service build",
-        "test:unit": "vue-cli-service test:unit",
-        "lint": "vue-cli-service lint"
-    },
-    "dependencies": {
-        "@zakerxa/vue-multiple-image-upload": "^1.0.10",
-        "vue-router": "^4.1.5"
-    },
-    "devDependencies": {
-        "@vue/cli-plugin-babel": "~4.5.13",
-        "@vue/cli-plugin-eslint": "~4.5.13",
-        "@vue/cli-plugin-unit-jest": "~4.5.13",
-        "@vue/cli-service": "~4.5.13",
-        "@vue/compiler-sfc": "^3.0.0",
-        "@vue/eslint-config-prettier": "^6.0.0",
-        "@vue/test-utils": "^2.0.0-0",
-        "babel-eslint": "^10.1.0",
-        "eslint": "^6.7.2",
-        "eslint-plugin-prettier": "^3.3.1",
-        "eslint-plugin-vue": "^7.0.0",
-        "prettier": "^2.2.1",
-        "sass": "^1.26.5",
-        "sass-loader": "^8.0.2",
-        "typescript": "~3.9.3",
-        "vue-jest": "^5.0.0-0"
-    },
-    "eslintConfig": {
-        "root": true,
-        "env": {
-            "node": true
-        },
-        "extends": [
-            "plugin:vue/vue3-essential",
-            "eslint:recommended"
-        ],
-        "parserOptions": {
-            "parser": "babel-eslint"
-        },
-        "rules": {},
-        "overrides": [
-            {
-                "files": [
-                    "**/__tests__/*.{j,t}s?(x)",
-                    "**/tests/unit/**/*.spec.{j,t}s?(x)"
-                ],
-                "env": {
-                    "jest": true
-                }
-            }
-        ]
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not dead"
-    ],
-    "jest": {
-        "preset": "@vue/cli-plugin-unit-jest",
-        "transform": {
-            "^.+\\.vue$": "vue-jest"
-        }
-    }
+  "name": "@zakerxa/vue-multiple-image-upload",
+  "version": "1.0.11",
+  "license": "MIT",
+  "description": "This is Vue Multiple Image Upload with Preview, Resize, Remove, Add More, Drag & Drop features are included.",
+  "keywords": [
+    "Vue",
+    "Vue Image",
+    "Vue Preview",
+    "Vue Resize Image",
+    "Vue Image Upload",
+    "Vue Image Preview",
+    "Vue Multiple Image Upload",
+    "Vue Multi Image Upload",
+    "Vue Multiple Image",
+    "Vue Laravel Multiple Image Upload",
+    "Multiple Image Upload",
+    "Laravel Vue Multiple Image"
+  ],
+  "author": "Zin Min Htet",
+  "homepage": "https://github.com/Zakerxa/Vue-Multi-Image-Upload#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zakerxa/Vue-Multi-Image-Upload.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Zakerxa/Vue-Multi-Image-Upload/issues",
+    "email": "zakerxa@gmail.com"
+  },
+  "main": "dist/vue-multi-image-upload.ssr.js",
+  "browser": "dist/vue-multi-image-upload.esm.js",
+  "module": "dist/vue-multi-image-upload.esm.js",
+  "unpkg": "dist/vue-multi-image-upload.min.js",
+  "files": [
+    "dist/*",
+    "*.json",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "serve": "vue-cli-service serve dev/serve.js",
+    "prebuild": "rimraf ./dist",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:umd": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format umd",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.4.2",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.0.11",
+    "cross-env": "^7.0.3",
+    "minimist": "^1.2.5",
+    "postcss": "^8.2.10",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.52.8",
+    "rollup-plugin-image": "^1.0.2",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-vue": "^6.0.0",
+    "url-loader": "^4.1.1",
+    "vue": "^3.2.40"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@achrinza/node-ipc": "^10.1.10"
+  }
 }
